@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./Person.css";
+import classes from "./Person.css";
 
 class Person extends Component {
   render() {
     return (
-      <div className="Person">
+      <div className={classes.Person}>
         <p onClick={this.props.click}>
           Hi, I am {this.props.name}, My age is {this.props.age}
         </p>
