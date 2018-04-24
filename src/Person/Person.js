@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import "./Person.css";
-import Radium from "radium";
 
 class Person extends Component {
   render() {
-    const style = {
-      "@media (min-width:500px)": {
-        width: "450px"
-      }
-    };
     return (
-      <div className="Person" style={style}>
+      <div className="Person">
         <p onClick={this.props.click}>
           Hi, I am {this.props.name}, My age is {this.props.age}
         </p>
@@ -24,4 +18,4 @@ class Person extends Component {
   }
 }
 
-export default Radium(Person);
+export default Person;
