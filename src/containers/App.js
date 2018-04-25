@@ -4,26 +4,38 @@ import Persons from "./../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
-  state = {
-    persons: [
-      {
-        id: 1,
-        name: "Bhushan",
-        age: 24
-      },
-      {
-        id: 2,
-        name: "Pavan",
-        age: 24
-      },
-      {
-        id: 3,
-        name: "Ganesh",
-        age: 24
-      }
-    ],
-    showPersons: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [
+        {
+          id: 1,
+          name: "Bhushan",
+          age: 24
+        },
+        {
+          id: 2,
+          name: "Pavan",
+          age: 24
+        },
+        {
+          id: 3,
+          name: "Ganesh",
+          age: 24
+        }
+      ],
+      showPersons: false
+    };
+    console.log("[App.js] constructor calling");
+  }
+
+  componentWillMount(){
+    console.log("[App.js] componentWillMount Calling");
+  }
+  componentDidMount(){
+    console.log("[App.js] componentDidMount calling");
+
+  }
 
   togglePersonsHandler = () => {
     const showPersonsToggle = this.state.showPersons;
@@ -57,6 +69,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] render method calling");
     let persons = null;
     if (this.state.showPersons) {
       persons = (
