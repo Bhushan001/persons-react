@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import classes from "./App.css";
 import Persons from "./../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +29,32 @@ class App extends Component {
     console.log("[App.js] constructor calling");
   }
 
-  componentWillMount(){
+  componentWillMount() {
     console.log("[App.js] componentWillMount Calling");
   }
-  componentDidMount(){
+  componentDidMount() {
     console.log("[App.js] componentDidMount calling");
+  }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(`[UPDATE App.js] Inside shouldComponentUpdate`, {
+  //     props: nextProps,
+  //     state: nextState
+  //   });
+  //   return (
+  //     nextState.persons !== this.state.persons ||
+  //     nextState.showPersons !== this.state.showPersons
+  //   );
+  // }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(`[UPDATE App.js] Inside componentWillUpdate`, {
+      props: nextProps,
+      state: nextState
+    });
+  }
+  componentDidUpdate() {
+    console.log(`[UPDATE App.js] Inside componentDidUpdate`);
   }
 
   togglePersonsHandler = () => {
@@ -82,6 +102,13 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        <button
+          onClick={() => {
+            this.setState({ showPersons: true });
+          }}
+        >
+          Show Persons
+        </button>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
