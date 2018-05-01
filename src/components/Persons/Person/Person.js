@@ -13,6 +13,7 @@ class Person extends Component {
   }
   componentDidMount() {
     console.log("[Person.js] componentDidMount calling");
+    this.inputElement.focus();
   }
 
   render() {
@@ -24,6 +25,9 @@ class Person extends Component {
         </p>
         <input
           type="text"
+          ref={inp => {
+            this.inputElement = inp;
+          }}
           onChange={this.props.changed}
           value={this.props.name}
         />
