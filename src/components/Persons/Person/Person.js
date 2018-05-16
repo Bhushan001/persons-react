@@ -6,6 +6,7 @@ class Person extends Component {
   constructor(props) {
     super(props);
     console.log(`[Person.js] constructor is called`, props);
+    this.inputElement = React.createRef();
   }
 
   componentWillMount() {
@@ -13,7 +14,9 @@ class Person extends Component {
   }
   componentDidMount() {
     console.log("[Person.js] componentDidMount calling");
-    this.inputElement.focus();
+    if (this.props.position === 0) {
+      this.inputElement.current.focus();
+    }
   }
 
   render() {
@@ -25,9 +28,7 @@ class Person extends Component {
         </p>
         <input
           type="text"
-          ref={inp => {
-            this.inputElement = inp;
-          }}
+          ref={this.inputElement}
           onChange={this.props.changed}
           value={this.props.name}
         />
@@ -39,6 +40,7 @@ Person.propTypes = {
   click: PropTypes.func,
   name: PropTypes.string,
   age: PropTypes.number,
-  changed: PropTypes.func
+  changed: PropTypes.func,
+  position: PropTypes.number
 };
 export default Person;
